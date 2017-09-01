@@ -1,4 +1,11 @@
-<h2>Topics</h2>
+<div class="page-header">
+  <div class="btn-toolbar pull-right">
+    <%= link to: topic_path(@conn, :new), class: "btn btn-default" do %>
+      New Topic
+    <% end %>
+  </div>
+  <h2>Topics</h2>
+</div>
 
 <ul class="list-group">
   <%= for topic <- @topics do %>
