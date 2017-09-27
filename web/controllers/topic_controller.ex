@@ -49,7 +49,7 @@ defmodule Discuss.TopicController do
     end
   end
 
-  def destroy(conn, %{"id" => topic_id}) do
+  def delete(conn, %{"id" => topic_id}) do
     Repo.get!(Topic, topic_id) |> Repo.delete!
 
     conn
