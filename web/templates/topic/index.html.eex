@@ -12,7 +12,9 @@
     <li class="list-group-item">
       <%= topic.title %>
 
-      <div class="btn-group">
+      <div class="btn-group pull-right">
+        <%= link "Edit", to: topic_path(@conn, :edit, topic) %>
+        &nbsp;|&nbsp;
         <%= link "Delete", to: topic_path(@conn, :destroy, topic), method: :delete %>
       </div>
     </li>
