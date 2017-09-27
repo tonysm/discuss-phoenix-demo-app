@@ -11,6 +11,10 @@
   <%= for topic <- @topics do %>
     <li class="list-group-item">
       <%= topic.title %>
+
+      <div class="btn-group">
+        <%= link "Delete", to: topic_path(@conn, :destroy, topic), method: :delete %>
+      </div>
     </li>
   <% end %>
 </ul>
