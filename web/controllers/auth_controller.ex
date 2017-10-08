@@ -4,6 +4,11 @@ defmodule Discuss.AuthController do
 
   alias Discuss.User
 
+  def request(conn, params) do
+    # The callback method also handles how to redirect users to the provider.
+    callback conn, params
+  end
+
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, %{"provider" => provider}) do
     user_params = %{
       token: auth.credentials.token,
@@ -14,6 +19,12 @@ defmodule Discuss.AuthController do
     changeset = User.changeset(%User{}, user_params)
     
     signin(conn, changeset)
+  end
+
+  def signout(conn, _params) do
+    conn
+    |> configure_session(drop: true)
+    |> redirect(to: topic_path(conn, :index))
   end
 
   defp signin(conn, changeset) do
