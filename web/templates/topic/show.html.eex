@@ -1,1 +1,26 @@
 <h1><%= @topic.title %></h1>
+
+<hr>
+
+<h4>Comments</h4>
+
+<ul id="commentsSection" class="list-group">
+</ul>
+
+<hr>
+
+<form id="commentsForm">
+  <div class="form-group">
+    <textarea id="commentInput" class="form-control"></textarea>
+  </div>
+
+  <div class"form-group">
+    <button type="submit" class="btn btn-default">Send!</button>
+  </div>
+</form>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    window.createSocket(<%= @topic.id %>)
+  });
+</script>
