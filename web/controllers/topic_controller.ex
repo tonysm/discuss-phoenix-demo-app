@@ -7,7 +7,6 @@ defmodule Discuss.TopicController do
   plug :check_topic_owner when action in [:edit, :update, :delete]
 
   def index(conn, _params) do
-    IO.inspect conn.assigns
     topics = Repo.all(Topic)
 
     render conn, "index.html", topics: topics
@@ -72,7 +71,7 @@ defmodule Discuss.TopicController do
   def check_topic_owner(conn, _params) do
     %{params: %{"id" => topic_id}} = conn
 
-    if Repo.get(Topic, topic_id).user_id == conn.assigns.user.id do
+    if conn.assigns.user && Repo.get(Topic, topic_id).user_id == conn.assigns.user.id do
       conn
     else
       conn
