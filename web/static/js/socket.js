@@ -66,9 +66,17 @@ function renderComment (comment, element) {
 }
 
 function commentTemplate(comment) {
+    let email = 'Anonymous';
+
+    if (comment.user) {
+        email = comment.user.email;
+    }
+
     return `
-        <li class="list-group-item">
+        <li class="list-group-item clearfix">
             ${comment.content}
+
+            <span class="pull-right">${email}</span>
         </li>
     `;
 }
